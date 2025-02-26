@@ -55,7 +55,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix()
+    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix(): void
     {
         $request = new InternalRequest('http://localhost/');
 

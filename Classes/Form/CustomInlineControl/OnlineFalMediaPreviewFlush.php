@@ -45,7 +45,7 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
         $this->resourceFactory = $resourceFactory ?: GeneralUtility::makeInstance(ResourceFactory::class);
     }
 
-    public function renderFileReferenceHeaderControl(ModifyFileReferenceControlsEvent $event)
+    public function renderFileReferenceHeaderControl(ModifyFileReferenceControlsEvent $event): void
     {
         $elementData = $event->getElementData();
         if ($elementData['tableName'] !== 'sys_file_reference') {
@@ -74,7 +74,7 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    ) {
+    ): void {
         // Do nothing.
     }
 
@@ -85,7 +85,7 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
         array $childConfig,
         $isVirtual,
         array &$controlItems
-    ) {
+    ): void {
         if ($foreignTable !== 'sys_file_reference') {
             return;
         }

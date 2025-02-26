@@ -11,7 +11,7 @@ class GoogleMapsIframeHandlerTest extends AbstractHandlerTest
     /**
      * @test
      */
-    public function hasMatchesFindsAllGoogleMapsIframes()
+    public function hasMatchesFindsAllGoogleMapsIframes(): void
     {
         $handler = new GoogleMapsIframeHandler();
 

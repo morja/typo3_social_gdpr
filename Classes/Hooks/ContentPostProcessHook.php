@@ -15,19 +15,19 @@ class ContentPostProcessHook
     /**
      * @var ContentObjectRenderer|null
      */
-    protected $contentObjectRenderer;
+    protected object $contentObjectRenderer;
 
     public function __construct(ContentObjectRenderer $contentObjectRenderer = null)
     {
         $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
 
-    public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event)
+    public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event): void
     {
         $this->replaceSocialMediaInContent($event->getController());
     }
 
-    public function replaceSocialMedia(array $parameter)
+    public function replaceSocialMedia(array $parameter): void
     {
         $this->replaceSocialMediaInContent($parameter['pObj']);
     }

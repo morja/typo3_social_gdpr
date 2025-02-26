@@ -2,7 +2,7 @@
 
 defined('TYPO3') || die('Access denied.');
 
-call_user_func(function () {
+call_user_func(function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all']['social_gdpr'] =
         \IchHabRecht\SocialGdpr\Hooks\ContentPostProcessHook::class . '->replaceSocialMedia';
 

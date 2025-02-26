@@ -13,7 +13,7 @@ class OpenStreetMapHandlerTest extends AbstractHandlerTest
     /**
      * @test
      */
-    public function hasMatchesFindsAllYouTubeIframes()
+    public function hasMatchesFindsAllYouTubeIframes(): void
     {
         $handler = $this->getOpenStreetMapHandler();
 

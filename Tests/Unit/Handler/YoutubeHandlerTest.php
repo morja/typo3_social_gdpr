@@ -13,7 +13,7 @@ class YoutubeHandlerTest extends AbstractHandlerTest
     /**
      * @test
      */
-    public function hasMatchesFindsAllYouTubeIframes()
+    public function hasMatchesFindsAllYouTubeIframes(): void
     {
         $handler = $this->getYoutubeHandler();
 
