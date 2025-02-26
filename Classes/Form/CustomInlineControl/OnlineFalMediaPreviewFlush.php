@@ -30,19 +30,13 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
     protected ResourceFactory $resourceFactory;
 
     public function __construct(
-        IconFactory $iconFactory,
-        IconRegistry $iconRegistry,
-        OnlineMediaHelperRegistry $onlineMediaRegistry,
-        PageRenderer $pageRenderer,
-        PreviewImageServiceRegistry $previewImageServiceRegistry,
-        ResourceFactory $resourceFactory
     ) {
-        $this->iconFactory = $iconFactory ?: GeneralUtility::makeInstance(IconFactory::class);
-        $this->iconRegistry = $iconRegistry ?: GeneralUtility::makeInstance(IconRegistry::class);
-        $this->onlineMediaRegistry = $onlineMediaRegistry ?: GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
-        $this->pageRenderer = $pageRenderer ?: GeneralUtility::makeInstance(PageRenderer::class);
-        $this->previewImageServiceRegistry = $previewImageServiceRegistry ?: GeneralUtility::makeInstance(PreviewImageServiceRegistry::class);
-        $this->resourceFactory = $resourceFactory ?: GeneralUtility::makeInstance(ResourceFactory::class);
+        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+        $this->iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
+        $this->onlineMediaRegistry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
+        $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $this->previewImageServiceRegistry = GeneralUtility::makeInstance(PreviewImageServiceRegistry::class);
+        $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
     }
 
     public function renderFileReferenceHeaderControl(ModifyFileReferenceControlsEvent $event): void

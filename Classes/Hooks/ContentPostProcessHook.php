@@ -17,9 +17,9 @@ class ContentPostProcessHook
      */
     protected object $contentObjectRenderer;
 
-    public function __construct(ContentObjectRenderer $contentObjectRenderer)
+    public function __construct()
     {
-        $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
+        $this->contentObjectRenderer = GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
 
     public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event): void

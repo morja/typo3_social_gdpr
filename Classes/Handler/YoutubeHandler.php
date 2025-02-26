@@ -21,9 +21,9 @@ class YoutubeHandler implements HandlerInterface
      */
     protected object $youtubeImageService;
 
-    public function __construct(YoutubeImageService $youtubeImageService)
+    public function __construct()
     {
-        $this->youtubeImageService = $youtubeImageService ?: GeneralUtility::makeInstance(YoutubeImageService::class);
+        $this->youtubeImageService = GeneralUtility::makeInstance(YoutubeImageService::class);
     }
 
     public function hasMatches(string $content): bool

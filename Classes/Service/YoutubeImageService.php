@@ -37,10 +37,10 @@ class YoutubeImageService implements PreviewImageServiceInterface
      */
     protected object $requestFactory;
 
-    public function __construct(ExtensionConfiguration $extensionConfiguration, RequestFactory $requestFactory)
+    public function __construct()
     {
-        $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
-        $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
+        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+        $this->requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
     }
 
     public function getPreviewImage(string $id): string
