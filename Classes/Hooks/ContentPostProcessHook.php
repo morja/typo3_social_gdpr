@@ -17,7 +17,7 @@ class ContentPostProcessHook
      */
     protected object $contentObjectRenderer;
 
-    public function __construct(ContentObjectRenderer $contentObjectRenderer = null)
+    public function __construct(ContentObjectRenderer $contentObjectRenderer)
     {
         $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }

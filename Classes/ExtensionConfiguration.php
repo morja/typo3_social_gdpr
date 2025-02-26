@@ -11,14 +11,12 @@ class ExtensionConfiguration implements SingletonInterface
 {
     protected ?array $settings;
 
-    public function __construct(array $settings = null)
+    public function __construct()
     {
-        if ($settings === null) {
-            if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
-                $settings = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('social_gdpr');
-            } else {
-                $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['social_gdpr'], ['allowed_classes' => false]);
-            }
+        if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
+            $settings = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('social_gdpr');
+        } else {
+            $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['social_gdpr'], ['allowed_classes' => false]);
         }
         $this->settings = $settings;
     }

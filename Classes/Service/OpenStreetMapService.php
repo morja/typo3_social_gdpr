@@ -28,7 +28,7 @@ class OpenStreetMapService
      */
     protected object $requestFactory;
 
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
+    public function __construct(ExtensionConfiguration $extensionConfiguration, RequestFactory $requestFactory)
     {
         $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
