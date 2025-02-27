@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Form\CustomInlineControl;
 
 use IchHabRecht\SocialGdpr\Service\PreviewImageServiceRegistry;
-use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
+use TYPO3\CMS\Backend\Form\Event\ModifyInlineElementControlsEvent;
+use TYPO3\CMS\Backend\Form\Event\ModifyInlineElementEnabledControlsEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconRegistry;
@@ -15,7 +17,18 @@ use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
+
+#[AsEventListener(
+    identifier: 'socialgdprModifyFileReferenceControlsEvent',
+    event: ModifyFileReferenceControlsEvent::class,
+    method: 'renderFileReferenceHeaderControl',
+)]
+#[AsEventListener(
+    identifier: 'socialgdprModifyInlineElementControlsEvent',
+    event: ModifyInlineElementControlsEvent::class,
+    method: 'modifyControls',
+)]
+class OnlineFalMediaPreviewFlushEventListener
 {
     protected IconFactory $iconFactory;
 
@@ -29,8 +42,8 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
 
     protected ResourceFactory $resourceFactory;
 
-    public function __construct(
-    ) {
+    public function __construct()
+    {
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         $this->iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
         $this->onlineMediaRegistry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
@@ -55,32 +68,15 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
             return;
         }
 
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/PreviewImageFlush');
+        $this->pageRenderer->loadJavaScriptModule('@vendor/social_gdpr/Backend/PreviewImageFlush.js');
         $controls = $event->getControls();
         $controls['youtubeFlush'] = $this->renderControlItem($record);
         $event->setControls($controls);
     }
 
-    public function renderForeignRecordHeaderControl_preProcess(
-        $parentUid,
-        $foreignTable,
-        array $childRecord,
-        array $childConfig,
-        $isVirtual,
-        array &$enabledControls
-    ): void {
-        // Do nothing.
-    }
-
-    public function renderForeignRecordHeaderControl_postProcess(
-        $parentUid,
-        $foreignTable,
-        array $childRecord,
-        array $childConfig,
-        $isVirtual,
-        array &$controlItems
-    ): void {
-        if ($foreignTable !== 'sys_file_reference') {
+    public function modifyControls(ModifyInlineElementControlsEvent $event): void
+    {
+        if ($event->getElementData()['inlineParentTableName'] !== 'sys_file_reference') {
             return;
         }
 
@@ -92,8 +88,9 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
             return;
         }
 
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/PreviewImageFlush');
+        $this->pageRenderer->loadJavaScriptModule('@vendor/social_gdpr/Backend/PreviewImageFlush.js');
         $controlItems['youtubeFlush'] = $this->renderControlItem($childRecord);
+        $event->setControls($controlItems);
     }
 
     protected function renderControlItem(array $record): string
