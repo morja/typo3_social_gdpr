@@ -21,9 +21,9 @@ class VimeoHandler implements HandlerInterface
      */
     protected object $vimeoImageService;
 
-    public function __construct()
+    public function __construct(VimeoImageService $vimeoImageService)
     {
-        $this->vimeoImageService = GeneralUtility::makeInstance(VimeoImageService::class);
+        $this->vimeoImageService = $vimeoImageService ?: GeneralUtility::makeInstance(VimeoImageService::class);
     }
 
     public function hasMatches(string $content): bool

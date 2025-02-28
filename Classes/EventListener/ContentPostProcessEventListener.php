@@ -23,9 +23,9 @@ final readonly class ContentPostProcessEventListener
      */
     protected object $contentObjectRenderer;
 
-    public function __construct()
+    public function __construct(ContentObjectRenderer $contentObjectRenderer)
     {
-        $this->contentObjectRenderer = GeneralUtility::makeInstance(ContentObjectRenderer::class);
+        $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
 
     public function __invoke(AfterCacheableContentIsGeneratedEvent $event): void
