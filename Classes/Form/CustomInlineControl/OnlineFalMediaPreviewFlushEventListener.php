@@ -43,12 +43,12 @@ class OnlineFalMediaPreviewFlushEventListener
     protected ResourceFactory $resourceFactory;
 
     public function __construct(
-        IconFactory $iconFactory = null,
-        IconRegistry $iconRegistry = null,
-        OnlineMediaHelperRegistry $onlineMediaRegistry = null,
-        PageRenderer $pageRenderer = null,
-        PreviewImageServiceRegistry $previewImageServiceRegistry = null,
-        ResourceFactory $resourceFactory = null
+        ?IconFactory $iconFactory = null,
+        ?IconRegistry $iconRegistry = null,
+        ?OnlineMediaHelperRegistry $onlineMediaRegistry = null,
+        ?PageRenderer $pageRenderer = null,
+        ?PreviewImageServiceRegistry $previewImageServiceRegistry = null,
+        ?ResourceFactory $resourceFactory = null
     ) {
         $this->iconFactory = $iconFactory ?: GeneralUtility::makeInstance(IconFactory::class);
         $this->iconRegistry = $iconRegistry ?: GeneralUtility::makeInstance(IconRegistry::class);

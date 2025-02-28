@@ -21,7 +21,7 @@ class OpenStreetMapHandler implements HandlerInterface
      */
     protected object $openStreetMapService;
 
-    public function __construct(OpenStreetMapService $openStreetMapService = null)
+    public function __construct(?OpenStreetMapService $openStreetMapService = null)
     {
         $this->openStreetMapService = $openStreetMapService ?: GeneralUtility::makeInstance(OpenStreetMapService::class);
     }

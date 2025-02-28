@@ -11,7 +11,7 @@ class ExtensionConfiguration implements SingletonInterface
 {
     protected ?array $settings;
 
-    public function __construct(array $settings = null)
+    public function __construct(?array $settings = null)
     {
         if ($settings === null) {
             if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
