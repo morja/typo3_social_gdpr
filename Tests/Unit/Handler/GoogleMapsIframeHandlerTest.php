@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\GoogleMapsIframeHandler;
+use PHPUnit\Framework\Attributes\Test;
 
-class GoogleMapsIframeHandlerTest extends AbstractHandlerTest
+class GoogleMapsIframeHandlerTest extends AbstractHandler
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function hasMatchesFindsAllGoogleMapsIframes(): void
     {
         $handler = new GoogleMapsIframeHandler();
