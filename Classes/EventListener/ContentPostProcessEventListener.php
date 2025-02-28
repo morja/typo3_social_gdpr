@@ -23,7 +23,7 @@ final readonly class ContentPostProcessEventListener
      */
     protected object $contentObjectRenderer;
 
-    public function __construct(ContentObjectRenderer $contentObjectRenderer)
+    public function __construct(ContentObjectRenderer $contentObjectRenderer = null)
     {
         $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
